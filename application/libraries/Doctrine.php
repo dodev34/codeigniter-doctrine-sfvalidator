@@ -97,9 +97,13 @@ class Doctrine {
   }
 
   /**
-   * Return doctrine entity manager
-   *
    * @return Doctrine\ORM\EntityManager
+   * -----------------------------------------------------
+   * On controller:
+   *     use Entity\User;
+   *     ...
+   *     $em     = $this->doctrine->getEntityManager();
+   *     $entity = $em->getRepository('Entity\User')->find(1);
    */
   public function getEntityManager()
   {
@@ -107,15 +111,15 @@ class Doctrine {
   }
 
   /**
-   * Retourn Symfony2 validator
-   * 
    * @return Symfony\Component\Validator\Validation
-   * @exemple (on controller):
+   * ----------------------------------------------------
+   * On controller:
    *     <note : $user is entity object>
    *     
+   *     $em        = $this->doctrine->getEntityManager();
    *     $violation = $this->doctrine->getValidator()->validate($user);
    *     if (null !== $violation) {
-   *         $datas['error'] = $violation;
+   *         $datas['errors'] = $violation;
    *     } else {
    *         $em->persist($user);
    *         $em->flush();
